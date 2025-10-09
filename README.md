@@ -656,10 +656,10 @@ If you're new here, please take a moment to review our contributing guidelines b
 [npm-url]: https://npmjs.com/package/html-minimizer-webpack-plugin
 [node]: https://img.shields.io/node/v/html-minimizer-webpack-plugin.svg
 [node-url]: https://nodejs.org
-[tests]: https://github.com/webpack-contrib/html-minimizer-webpack-plugin/workflows/html-minimizer-webpack-plugin/badge.svg
-[tests-url]: https://github.com/webpack-contrib/html-minimizer-webpack-plugin/actions
-[cover]: https://codecov.io/gh/webpack-contrib/html-minimizer-webpack-plugin/branch/master/graph/badge.svg
-[cover-url]: https://codecov.io/gh/webpack-contrib/html-minimizer-webpack-plugin
+[tests]: https://github.com/webpack/html-minimizer-webpack-plugin/workflows/html-minimizer-webpack-plugin/badge.svg
+[tests-url]: https://github.com/webpack/html-minimizer-webpack-plugin/actions
+[cover]: https://codecov.io/gh/webpack/html-minimizer-webpack-plugin/branch/main/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack/html-minimizer-webpack-plugin
 [discussion]: https://img.shields.io/github/discussions/webpack/webpack
 [discussion-url]: https://github.com/webpack/webpack/discussions
 [size]: https://packagephobia.now.sh/badge?p=html-minimizer-webpack-plugin
