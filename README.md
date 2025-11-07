@@ -646,7 +646,7 @@ You can use multiple `HtmlMinimizerPlugin` plugins to compress different files w
 We welcome all contributions!
 If you're new here, please take a moment to review our contributing guidelines before submitting issues or pull requests.
 
-[CONTRIBUTING](./.github/CONTRIBUTING.md)
+[CONTRIBUTING](https://github.com/webpack/html-minimizer-webpack-plugin?tab=contributing-ov-file#contributing)
 
 ## License
 
