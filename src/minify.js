@@ -31,18 +31,13 @@ async function minify(options) {
       minifyOptions,
     );
 
-    if (
-      typeof minifyResult !== "string" &&
-      typeof minifyResult.code !== "string"
-    ) {
-      throw new Error(
-        "minimizer function doesn't return the 'code' property or result is not a string value",
-      );
-    }
-
     if (typeof minifyResult === "string") {
       result.outputs.push({ code: minifyResult });
     } else {
+      if (typeof minifyResult.code === "string") {
+        result.outputs.push({ code: minifyResult.code });
+      }
+
       if (minifyResult.errors) {
         result.errors = [...result.errors, ...minifyResult.errors];
       }
@@ -50,12 +45,12 @@ async function minify(options) {
       if (minifyResult.warnings) {
         result.warnings = [...result.warnings, ...minifyResult.warnings];
       }
-
-      result.outputs.push({ code: minifyResult.code });
     }
   }
 
-  result.outputs = [result.outputs[result.outputs.length - 1]];
+  if (typeof result.outputs[result.outputs.length - 1] !== "undefined") {
+    result.outputs = [result.outputs[result.outputs.length - 1]];
+  }
 
   return result;
 }
