@@ -191,6 +191,37 @@ describe('"minify" option', () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
+  it("should emit errors and warnings without code", async () => {
+    const testHtmlId = "./simple.html";
+    const compiler = getCompiler(testHtmlId);
+
+    new HtmlMinimizerPlugin({
+      minify: [
+        async (_data) => ({
+          warnings: [
+            "string error",
+            new Error("test error"),
+            {
+              message: "object error",
+            },
+          ],
+          errors: [
+            "string error",
+            new Error("test error"),
+            {
+              message: "object error",
+            },
+          ],
+        }),
+      ],
+    }).apply(compiler);
+
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
   it("should work with 'swcMinify'", async () => {
     const testHtmlId = "./simple.html";
     const compiler = getCompiler(testHtmlId);

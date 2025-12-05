@@ -13,6 +13,25 @@ simple.html from Html Minimizer plugin",
 
 exports[`"minify" option should emit error: warnings 1`] = `[]`;
 
+exports[`"minify" option should emit errors and warnings without code: errors 1`] = `
+[
+  "Error: simple.html from Html Minimizer plugin
+simple.html from Html Minimizer plugin",
+  "Error: simple.html from Html Minimizer plugin
+simple.html from Html Minimizer plugin",
+  "Error: simple.html from Html Minimizer plugin
+simple.html from Html Minimizer plugin",
+]
+`;
+
+exports[`"minify" option should emit errors and warnings without code: warnings 1`] = `
+[
+  "Warning: object error",
+  "Warning: string error",
+  "Warning: test error",
+]
+`;
+
 exports[`"minify" option should minimize code and emit warning: assets 1`] = `
 {
   "simple.html": "<!doctype html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> <title>Document</title> </head> <body> <h1>My First Heading</h1> <p>My first paragraph.</p> <h2>An Unordered HTML List</h2> <ul> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ul> <h2>An Ordered HTML List</h2> <ol> <li>Coffee</li> <li>Tea</li> <li>Milk</li> </ol> </body> </html> ",

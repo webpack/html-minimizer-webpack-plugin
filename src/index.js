@@ -427,9 +427,12 @@ class HtmlMinimizerPlugin {
           }
 
           output = { warnings: [], errors: [] };
-          output.source = new RawSource(
-            result.outputs[result.outputs.length - 1].code,
-          );
+
+          if (result.outputs.length > 0) {
+            output.source = new RawSource(
+              result.outputs[result.outputs.length - 1].code,
+            );
+          }
 
           for (const error of result.errors) {
             output.errors.push(HtmlMinimizerPlugin.buildError(error, name));
@@ -448,8 +451,6 @@ class HtmlMinimizerPlugin {
           });
         }
 
-        const newInfo = { minimized: true };
-
         if (output.warnings && output.warnings.length > 0) {
           for (const warning of output.warnings) {
             compilation.warnings.push(
@@ -467,6 +468,12 @@ class HtmlMinimizerPlugin {
             );
           }
         }
+
+        if (!output.source) {
+          return;
+        }
+
+        const newInfo = { minimized: true };
 
         compilation.updateAsset(name, output.source, newInfo);
       });
