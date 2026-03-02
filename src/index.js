@@ -22,7 +22,8 @@ const {
 
 /** @typedef {RegExp | string} Rule */
 /** @typedef {Rule[] | Rule} Rules */
-// eslint-disable-next-line jsdoc/no-restricted-syntax
+
+// eslint-disable-next-line jsdoc/reject-any-type
 /** @typedef {any} EXPECTED_ANY */
 
 /** @typedef {Error & { plugin?: string, text?: string, source?: string } | string} Warning */
@@ -47,8 +48,8 @@ const {
 /**
  * @typedef {object} MinimizedResultObj
  * @property {string} code The minimized code
- * @property {Array<Error | ErrorObject| string>=} errors Array of errors
- * @property {Array<Warning | WarningObject | string>=} warnings Array of warnings
+ * @property {(Error | ErrorObject | string)[]=} errors Array of errors
+ * @property {(Warning | WarningObject | string)[]=} warnings Array of warnings
  */
 
 /**
@@ -70,7 +71,7 @@ const {
 
 /**
  * @template T
- * @typedef {T extends any[] ? { [P in keyof T]?: InferDefaultType<T[P]> } : InferDefaultType<T>} MinimizerOptions
+ * @typedef {T extends EXPECTED_ANY[] ? { [P in keyof T]?: InferDefaultType<T[P]> } : InferDefaultType<T>} MinimizerOptions
  */
 
 /**
@@ -88,7 +89,7 @@ const {
 
 /**
  * @template T
- * @typedef {T extends any[] ? { [P in keyof T]: BasicMinimizerImplementation<T[P]> & MinimizeFunctionHelpers; } : BasicMinimizerImplementation<T> & MinimizeFunctionHelpers} MinimizerImplementation
+ * @typedef {T extends EXPECTED_ANY[] ? { [P in keyof T]: BasicMinimizerImplementation<T[P]> & MinimizeFunctionHelpers } : BasicMinimizerImplementation<T> & MinimizeFunctionHelpers} MinimizerImplementation
  */
 
 /**
@@ -101,9 +102,9 @@ const {
 
 /**
  * @typedef InternalResult
- * @property {Array<{ code: string }>} outputs Array of output objects
- * @property {Array<Warning | WarningObject | string>} warnings Array of warnings
- * @property {Array<Error | ErrorObject | string>} errors Array of errors
+ * @property {{ code: string }[]} outputs Array of output objects
+ * @property {(Warning | WarningObject | string)[]} warnings Array of warnings
+ * @property {(Error | ErrorObject | string)[]} errors Array of errors
  */
 
 /**
@@ -249,12 +250,11 @@ class HtmlMinimizerPlugin {
   static getAvailableNumberOfCores(parallel) {
     // In some cases cpus() returns undefined
     // https://github.com/nodejs/node/issues/19022
-    /* eslint-disable n/no-unsupported-features/node-builtins */
+
     const cpus =
       typeof os.availableParallelism === "function"
         ? { length: /** @type {number} */ (os.availableParallelism()) }
         : os.cpus() || { length: 1 };
-    /* eslint-enable n/no-unsupported-features/node-builtins */
 
     return parallel === true || typeof parallel === "undefined"
       ? cpus.length - 1
@@ -278,7 +278,7 @@ class HtmlMinimizerPlugin {
    * @param {Compiler} compiler The webpack compiler
    * @param {Compilation} compilation The webpack compilation
    * @param {Record<string, import("webpack").sources.Source>} assets The assets to optimize
-   * @param {{availableNumberOfCores: number}} optimizeOptions Optimization options
+   * @param {{ availableNumberOfCores: number }} optimizeOptions Optimization options
    * @returns {Promise<void>} Promise that resolves when optimization is complete
    */
   async optimize(compiler, compilation, assets, optimizeOptions) {

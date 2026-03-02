@@ -16,8 +16,8 @@ function removeCWD(str) {
 }
 
 /**
- * @param {Array<Error>} errors The errors to normalize
- * @returns {Array<string>} The normalized error messages
+ * @param {Error[]} errors The errors to normalize
+ * @returns {string[]} The normalized error messages
  */
 export default (errors) =>
   errors.map((error) =>

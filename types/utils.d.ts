@@ -2,7 +2,7 @@ export type Task<T> = () => Promise<T>;
 export type MinimizedResult = import("./index.js").MinimizedResult;
 export type CustomOptions = import("./index.js").CustomOptions;
 export type Input = import("./index.js").Input;
-export type EXPECTED_ANY = any;
+export type EXPECTED_ANY = import("./index.js").EXPECTED_ANY;
 /**
  * @param {Input} input The input to minify
  * @param {CustomOptions=} minimizerOptions The minimizer options
