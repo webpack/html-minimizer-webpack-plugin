@@ -1,8 +1,7 @@
 /** @typedef {import("./index.js").MinimizedResult} MinimizedResult */
 /** @typedef {import("./index.js").CustomOptions} CustomOptions */
 /** @typedef {import("./index.js").Input} Input */
-// eslint-disable-next-line jsdoc/no-restricted-syntax
-/** @typedef {any} EXPECTED_ANY */
+/** @typedef {import("./index.js").EXPECTED_ANY} EXPECTED_ANY */
 
 const notSettled = Symbol("not-settled");
 
@@ -155,7 +154,7 @@ async function swcMinify(input, minimizerOptions = {}) {
     errors: result.errors
       ? result.errors.map((diagnostic) => {
           const error =
-            /** @type {Error & { span: EXPECTED_ANY; level: EXPECTED_ANY }} */ (
+            /** @type {Error & { span: EXPECTED_ANY, level: EXPECTED_ANY }} */ (
               new Error(diagnostic.message)
             );
 
@@ -199,7 +198,7 @@ async function swcMinifyFragment(input, minimizerOptions = {}) {
     errors: result.errors
       ? result.errors.map((diagnostic) => {
           const error =
-            /** @type {Error & { span: EXPECTED_ANY; level: EXPECTED_ANY }} */ (
+            /** @type {Error & { span: EXPECTED_ANY, level: EXPECTED_ANY }} */ (
               new Error(diagnostic.message)
             );
 
