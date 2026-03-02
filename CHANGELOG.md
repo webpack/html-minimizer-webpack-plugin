@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/webpack/html-minimizer-webpack-plugin/compare/v5.0.4...v6.0.0) (2026-03-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported `Node.js` version is `20.9.0` ([#161](https://github.com/webpack/html-minimizer-webpack-plugin/issues/161)) ([2f5ef9a](https://github.com/webpack/html-minimizer-webpack-plugin/commit/2f5ef9af228306549007cd948b19b098931c5cdb))
+
 ### [5.0.4](https://github.com/webpack/html-minimizer-webpack-plugin/compare/v5.0.3...v5.0.4) (2025-12-05)
 
 
