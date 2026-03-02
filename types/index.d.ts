@@ -52,7 +52,7 @@ declare class HtmlMinimizerPlugin<
    * @param {Compiler} compiler The webpack compiler
    * @param {Compilation} compilation The webpack compilation
    * @param {Record<string, import("webpack").sources.Source>} assets The assets to optimize
-   * @param {{availableNumberOfCores: number}} optimizeOptions Optimization options
+   * @param {{ availableNumberOfCores: number }} optimizeOptions Optimization options
    * @returns {Promise<void>} Promise that resolves when optimization is complete
    */
   private optimize;
@@ -167,11 +167,11 @@ type MinimizedResultObj = {
   /**
    * Array of errors
    */
-  errors?: Array<Error | ErrorObject | string> | undefined;
+  errors?: (Error | ErrorObject | string)[] | undefined;
   /**
    * Array of warnings
    */
-  warnings?: Array<Warning | WarningObject | string> | undefined;
+  warnings?: (Warning | WarningObject | string)[] | undefined;
 };
 type MinimizedResult = MinimizedResultObj | string;
 type Input = {
@@ -181,7 +181,7 @@ type CustomOptions = {
   [key: string]: EXPECTED_ANY;
 };
 type InferDefaultType<T> = T extends infer U ? U : CustomOptions;
-type MinimizerOptions<T> = T extends any[]
+type MinimizerOptions<T> = T extends EXPECTED_ANY[]
   ? { [P in keyof T]?: InferDefaultType<T[P]> }
   : InferDefaultType<T>;
 type BasicMinimizerImplementation<T> = (
@@ -194,7 +194,7 @@ type MinimizeFunctionHelpers = {
    */
   supportsWorkerThreads?: (() => boolean | undefined) | undefined;
 };
-type MinimizerImplementation<T> = T extends any[]
+type MinimizerImplementation<T> = T extends EXPECTED_ANY[]
   ? {
       [P in keyof T]: BasicMinimizerImplementation<T[P]> &
         MinimizeFunctionHelpers;
@@ -221,17 +221,17 @@ type InternalResult = {
   /**
    * Array of output objects
    */
-  outputs: Array<{
+  outputs: {
     code: string;
-  }>;
+  }[];
   /**
    * Array of warnings
    */
-  warnings: Array<Warning | WarningObject | string>;
+  warnings: (Warning | WarningObject | string)[];
   /**
    * Array of errors
    */
-  errors: Array<Error | ErrorObject | string>;
+  errors: (Error | ErrorObject | string)[];
 };
 type MinimizerWorker<T> = JestWorker & {
   transform: (options: string) => Promise<InternalResult>;
